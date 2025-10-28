@@ -46,6 +46,7 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
   }, [data, selectedStations]);
 
   const formatAxisInMillions = (value: number) => {
+    if (value === 0) return '';
     return `${(value / 1_000_000).toFixed(1)}M`;
   };
 
@@ -64,7 +65,7 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
       <CardContent>
         <ResponsiveContainer width="100%" height={500}>
           <ScatterChart
-            margin={{ top: 20, right: 20, bottom: 70, left: 70 }}
+            margin={{ top: 20, right: 20, bottom: 80, left: 100 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis 
@@ -77,7 +78,7 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
               <Label 
                 value={`${t('chart.workGfa')} (${t('chart.millionSqm')})`}
                 position="bottom" 
-                offset={10}
+                offset={20}
                 style={{ fill: "hsl(var(--work))", fontWeight: 600 }}
               />
             </XAxis>
@@ -91,9 +92,9 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
               <Label 
                 value={`${t('chart.housingGfa')} (${t('chart.millionSqm')})`}
                 angle={-90} 
-                position="insideLeft"
-                offset={10}
-                style={{ fill: "hsl(var(--housing))", fontWeight: 600 }}
+                position="left"
+                offset={30}
+                style={{ fill: "hsl(var(--housing))", fontWeight: 600, textAnchor: 'middle' }}
               />
             </YAxis>
             <ZAxis type="number" dataKey="z" range={[100, 1000]} name={t('chart.totalGfa')} />

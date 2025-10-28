@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { parseStationData } from "@/lib/stationData";
+import { parseStationData, calculateDonutScale } from "@/lib/stationData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { formatNumber } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,6 +20,18 @@ const StationDetail = () => {
 
   const walkStation = walkData.find((s) => s.name === decodedName);
   const bikeStation = bikeData.find((s) => s.name === decodedName);
+
+  // Calculate max total for scaling donuts
+  const maxTotal = walkStation && bikeStation 
+    ? Math.max(walkStation.total, bikeStation.total) 
+    : 0;
+  
+  const walkDonutSize = walkStation 
+    ? calculateDonutScale(walkStation.total, maxTotal, 120, 240) 
+    : 160;
+  const bikeDonutSize = bikeStation 
+    ? calculateDonutScale(bikeStation.total, maxTotal, 120, 240) 
+    : 160;
 
   if (!walkStation || !bikeStation) {
     return (
@@ -107,7 +119,7 @@ const StationDetail = () => {
                   </div>
                 </div>
                 <div className="flex justify-center pt-4">
-                  <MiniDonut station={walkStation} size={160} />
+                  <MiniDonut station={walkStation} size={walkDonutSize} clickable={false} />
                 </div>
               </div>
 
@@ -141,7 +153,7 @@ const StationDetail = () => {
                   </div>
                 </div>
                 <div className="flex justify-center pt-4">
-                  <MiniDonut station={bikeStation} size={160} />
+                  <MiniDonut station={bikeStation} size={bikeDonutSize} clickable={false} />
                 </div>
               </div>
             </div>
