@@ -3,6 +3,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StationData } from "@/lib/stationData";
 import { StationSelector } from "./StationSelector";
+import { useIsMobile } from "@/hooks/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 import {
   ScatterChart,
   Scatter,
@@ -21,6 +23,8 @@ interface ComparisonChartProps {
 
 export const ComparisonChart = ({ data }: ComparisonChartProps) => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
   
   // Default: top 10 stations
   const defaultStations = useMemo(() => {
@@ -63,9 +67,14 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
         </div>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width="100%" height={isMobile ? 400 : 500}>
           <ScatterChart
-            margin={{ top: 20, right: 20, bottom: 80, left: 100 }}
+            margin={{ 
+              top: 20, 
+              right: isMobile ? 10 : 20, 
+              bottom: isMobile ? 60 : 80, 
+              left: isMobile ? 80 : 100 
+            }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis 
@@ -130,7 +139,7 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
               cursor="pointer"
               onClick={(data: any) => {
                 if (data && data.name) {
-                  window.location.href = `/station/${encodeURIComponent(data.name)}`;
+                  navigate(`/station/${encodeURIComponent(data.name)}`);
                 }
               }}
             />

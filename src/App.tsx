@@ -4,9 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Suspense, lazy } from "react";
 import Index from "./pages/Index";
-import StationDetail from "./pages/StationDetail";
 import NotFound from "./pages/NotFound";
+import { LoadingSpinner } from "./components/LoadingSpinner";
+
+const StationDetail = lazy(() => import("./pages/StationDetail"));
 
 const queryClient = new QueryClient();
 
@@ -19,7 +22,11 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/station/:stationName" element={<StationDetail />} />
+            <Route path="/station/:stationName" element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <StationDetail />
+              </Suspense>
+            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -24,8 +24,8 @@ export const MiniDonut = ({ station, size = 100, clickable = true }: MiniDonutPr
 
   return (
     <div 
-      className={`flex flex-col items-center gap-2 p-2 rounded-lg transition-all group ${
-        clickable ? 'hover:bg-muted/50 hover:scale-105 cursor-pointer' : ''
+      className={`flex flex-col items-center gap-2 p-3 rounded-lg transition-all group min-w-[80px] ${
+        clickable ? 'hover:bg-muted/50 active:scale-95 cursor-pointer touch-manipulation' : ''
       }`}
       onClick={handleClick}
       role={clickable ? "button" : undefined}
@@ -38,7 +38,7 @@ export const MiniDonut = ({ station, size = 100, clickable = true }: MiniDonutPr
       }}
       aria-label={clickable ? `View details for ${station.name}` : undefined}
     >
-      <div style={{ width: size, height: size }}>
+      <div style={{ width: Math.max(size, 80), height: Math.max(size, 80) }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie

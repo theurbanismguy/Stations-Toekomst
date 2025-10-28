@@ -78,30 +78,30 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
     font-feature-settings: 'tnum' on, 'lnum' on;
-    font-size: 18px;
+    font-size: clamp(16px, 1.125vw, 18px);
     line-height: 1.6;
     letter-spacing: -0.011em;
   }
 
-  /* Big Type Swiss Typography */
+  /* Big Type Swiss Typography - Mobile First */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.1;
   }
 
   h1 {
-    font-size: clamp(48px, 8vw, 96px);
+    font-size: clamp(36px, 8vw, 96px);
     letter-spacing: -0.04em;
     line-height: 0.95;
   }
 
   h2 {
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(24px, 5vw, 48px);
     letter-spacing: -0.03em;
   }
 
   h3 {
-    font-size: clamp(24px, 3vw, 32px);
+    font-size: clamp(18px, 3vw, 32px);
     letter-spacing: -0.02em;
   }
 
@@ -123,5 +123,33 @@ All colors MUST be HSL.
   /* Clean input styling */
   input, button, select {
     font-feature-settings: "tnum", "lnum";
+  }
+  
+  /* Performance optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Touch-friendly interactions */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize animations for mobile */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

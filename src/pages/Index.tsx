@@ -32,31 +32,35 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Integrated Header */}
       <div className="border-b bg-white">
-        <div className="container mx-auto px-4 md:px-8 py-6 md:py-8">
+        <div className="container mx-auto px-3 md:px-4 lg:px-8 py-4 md:py-6 lg:py-8">
           {/* Title + Language Toggle Row */}
           <div className="flex items-start justify-between mb-2">
             <Link to="/" className="hover:opacity-80 transition-opacity">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase leading-none">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight uppercase leading-none">
                 {t('site.title')}
               </h1>
             </Link>
             <LanguageToggle />
           </div>
           
-          {/* Subtitle + Integrated Theme Navigation */}
+          {/* Subtitle */}
+          <div className="text-sm md:text-base lg:text-lg text-muted-foreground mb-3">
+            {t('site.subtitle')}
+          </div>
+          
+          {/* Theme Navigation */}
           <TooltipProvider>
-            <div className="text-base md:text-lg text-muted-foreground mt-2 flex flex-wrap items-center gap-2">
-              <span>{t('site.subtitle')}:</span>
+            <div className="flex flex-wrap items-center gap-2 text-sm md:text-base">
               {themes.map((theme, index) => (
                 <span key={theme.id} className="flex items-center gap-2">
                   {theme.active ? (
-                    <span className="text-accent font-bold border-b-2 border-accent uppercase text-sm tracking-wide">
+                    <span className="text-accent font-bold border-b-2 border-accent uppercase text-xs md:text-sm tracking-wide">
                       {theme.name}
                     </span>
                   ) : (
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <span className="text-muted-foreground cursor-not-allowed uppercase text-sm tracking-wide">
+                        <span className="text-muted-foreground cursor-not-allowed uppercase text-xs md:text-sm tracking-wide">
                           {theme.name}
                         </span>
                       </TooltipTrigger>
@@ -66,7 +70,7 @@ const Index = () => {
                     </Tooltip>
                   )}
                   {index < themes.length - 1 && (
-                    <span className="text-muted-foreground">·</span>
+                    <span className="text-muted-foreground text-xs">·</span>
                   )}
                 </span>
               ))}
@@ -89,9 +93,9 @@ const Index = () => {
       />
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-3 md:px-4 lg:px-8 py-6 md:py-8">
         {/* View Toggle */}
-        <div className="mb-8">
+        <div className="mb-6 md:mb-8">
           <ViewToggle value={currentView} onValueChange={setCurrentView} />
         </div>
 

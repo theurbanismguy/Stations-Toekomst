@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Train } from "lucide-react";
 import { MiniDonut } from "@/components/MiniDonut";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 const StationDetail = () => {
   const { stationName } = useParams();
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const decodedName = stationName ? decodeURIComponent(stationName) : "";
 
@@ -27,10 +29,10 @@ const StationDetail = () => {
     : 0;
   
   const walkDonutSize = walkStation 
-    ? calculateDonutScale(walkStation.total, maxTotal, 120, 240) 
+    ? calculateDonutScale(walkStation.total, maxTotal, isMobile ? 140 : 120, isMobile ? 180 : 240) 
     : 160;
   const bikeDonutSize = bikeStation 
-    ? calculateDonutScale(bikeStation.total, maxTotal, 120, 240) 
+    ? calculateDonutScale(bikeStation.total, maxTotal, isMobile ? 140 : 120, isMobile ? 180 : 240) 
     : 160;
 
   if (!walkStation || !bikeStation) {
@@ -59,26 +61,26 @@ const StationDetail = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b bg-white">
-        <div className="container mx-auto px-4 md:px-8 py-4 md:py-8">
+        <div className="container mx-auto px-3 md:px-4 lg:px-8 py-3 md:py-6 lg:py-8">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors mb-3 md:mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             {t('station.backToDashboard')}
           </Link>
-          <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tight mb-2">
+          <h1 className="text-2xl md:text-4xl lg:text-7xl font-bold uppercase tracking-tight mb-2">
             {walkStation.name}
           </h1>
-          <p className="text-base md:text-lg text-muted-foreground">
+          <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {walkStation.size} · {walkStation.type}
           </p>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 md:px-8 py-6 md:py-12">
-        <div className="space-y-8 md:space-y-12">
+      <div className="container mx-auto px-3 md:px-4 lg:px-8 py-4 md:py-8 lg:py-12">
+        <div className="space-y-6 md:space-y-8 lg:space-y-12">
           {/* Active Theme - Programma */}
           <div className="border rounded-none p-4 md:p-6 lg:p-8">
             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-2">

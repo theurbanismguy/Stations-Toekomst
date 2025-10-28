@@ -5,6 +5,8 @@ import { MiniDonut } from "./MiniDonut";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { useDebounce } from "@/hooks/useDebounce";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 interface StationGridProps {
   data: StationData[];
@@ -12,18 +14,20 @@ interface StationGridProps {
 
 export const StationGrid = ({ data }: StationGridProps) => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm, 300);
 
   const maxTotal = useMemo(() => {
     return Math.max(...data.map((s) => s.total));
   }, [data]);
 
   const filteredStations = useMemo(() => {
-    if (!searchTerm) return data;
+    if (!debouncedSearch) return data;
     return data.filter((station) =>
-      station.name.toLowerCase().includes(searchTerm.toLowerCase())
+      station.name.toLowerCase().includes(debouncedSearch.toLowerCase())
     );
-  }, [data, searchTerm]);
+  }, [data, debouncedSearch]);
 
   return (
     <Card>
@@ -43,9 +47,14 @@ export const StationGrid = ({ data }: StationGridProps) => {
         <div className="text-sm text-muted-foreground mb-4">
           {filteredStations.length} {filteredStations.length === 1 ? t('chart.stationFound') : t('chart.stationsFound')}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
           {filteredStations.map((station) => {
-            const scale = calculateDonutScale(station.total, maxTotal);
+            const scale = calculateDonutScale(
+              station.total, 
+              maxTotal, 
+              isMobile ? 80 : 60, 
+              isMobile ? 120 : 160
+            );
             return (
               <MiniDonut key={station.name} station={station} size={scale} />
             );
