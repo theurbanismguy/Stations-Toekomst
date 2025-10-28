@@ -69,6 +69,9 @@ export const StationSelector = ({
           <PopoverContent className="w-[400px] p-0" align="start">
             <Command>
               <CommandInput placeholder={t('chart.searchStation')} />
+              <div className="px-3 py-1.5 text-xs text-muted-foreground border-b">
+                {data.length} {data.length === 1 ? t('chart.stationFound') : t('chart.stationsFound')}
+              </div>
               <CommandEmpty>No stations found</CommandEmpty>
               <ScrollArea className="h-[300px]">
                 <CommandGroup>

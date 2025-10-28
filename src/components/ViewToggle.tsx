@@ -20,39 +20,39 @@ export const ViewToggle = ({ value, onValueChange }: ViewToggleProps) => {
         onValueChange={(newValue) => {
           if (newValue) onValueChange(newValue as ViewType);
         }}
-        className="bg-muted/50 p-1 rounded"
+        className="bg-muted/50 p-0.5 rounded text-xs"
       >
         <ToggleGroupItem
           value="overview"
           aria-label="Overview"
-          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background px-2 md:px-3"
         >
-          <PieChart className="h-4 w-4 mr-2" />
-          {t('views.overview')}
+          <PieChart className="h-3 w-3 md:h-4 md:w-4" />
+          <span className="ml-2 hidden md:inline">{t('views.overview')}</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="top10"
           aria-label="Top & Bottom 10"
-          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background px-2 md:px-3"
         >
-          <BarChart3 className="h-4 w-4 mr-2" />
-          {t('views.topBottom')}
+          <BarChart3 className="h-3 w-3 md:h-4 md:w-4" />
+          <span className="ml-2 hidden md:inline">{t('views.topBottom')}</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="compare"
           aria-label="Compare"
-          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background px-2 md:px-3"
         >
-          <GitCompare className="h-4 w-4 mr-2" />
-          {t('views.compare')}
+          <GitCompare className="h-3 w-3 md:h-4 md:w-4" />
+          <span className="ml-2 hidden md:inline">{t('views.compare')}</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="table"
           aria-label="All Data"
-          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background px-2 md:px-3"
         >
-          <Table className="h-4 w-4 mr-2" />
-          {t('views.allData')}
+          <Table className="h-3 w-3 md:h-4 md:w-4" />
+          <span className="ml-2 hidden md:inline">{t('views.allData')}</span>
         </ToggleGroupItem>
       </ToggleGroup>
     </div>

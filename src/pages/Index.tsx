@@ -8,7 +8,7 @@ import { ComparisonChart } from "@/components/ComparisonChart";
 import { ViewToggle, ViewType } from "@/components/ViewToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Train } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Index = () => {
@@ -32,52 +32,45 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Integrated Header */}
       <div className="border-b bg-white">
-        <div className="container mx-auto px-8 py-12">
+        <div className="container mx-auto px-4 md:px-8 py-6 md:py-8">
           {/* Title + Language Toggle Row */}
           <div className="flex items-start justify-between mb-2">
-            <div className="flex items-center gap-4">
-              <Train className="h-5 w-5 text-accent flex-shrink-0" />
-              <h1 className="text-6xl lg:text-8xl font-bold tracking-tight uppercase leading-none">
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase leading-none">
                 {t('site.title')}
               </h1>
-            </div>
+            </Link>
             <LanguageToggle />
           </div>
           
-          {/* Subtitle */}
-          <p className="text-lg text-muted-foreground mt-2 ml-9">
-            {t('site.subtitle')}
-          </p>
-          
-          {/* Integrated Theme Navigation */}
+          {/* Subtitle + Integrated Theme Navigation */}
           <TooltipProvider>
-            <nav className="mt-8 ml-9">
-              <ul className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-widest font-medium">
-                {themes.map((theme, index) => (
-                  <li key={theme.id} className="flex items-center gap-3">
-                    {theme.active ? (
-                      <span className="text-accent font-bold border-b-2 border-accent pb-1">
-                        {theme.name}
-                      </span>
-                    ) : (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <span className="text-muted-foreground cursor-not-allowed">
-                            {theme.name}
-                          </span>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{t('themes.comingSoon')}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    )}
-                    {index < themes.length - 1 && (
-                      <span className="text-muted-foreground">·</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="text-base md:text-lg text-muted-foreground mt-2 flex flex-wrap items-center gap-2">
+              <span>{t('site.subtitle')}:</span>
+              {themes.map((theme, index) => (
+                <span key={theme.id} className="flex items-center gap-2">
+                  {theme.active ? (
+                    <span className="text-accent font-bold border-b-2 border-accent uppercase text-sm tracking-wide">
+                      {theme.name}
+                    </span>
+                  ) : (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="text-muted-foreground cursor-not-allowed uppercase text-sm tracking-wide">
+                          {theme.name}
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{t('themes.comingSoon')}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+                  {index < themes.length - 1 && (
+                    <span className="text-muted-foreground">·</span>
+                  )}
+                </span>
+              ))}
+            </div>
           </TooltipProvider>
         </div>
       </div>

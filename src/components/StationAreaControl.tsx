@@ -2,6 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { TransportMode } from "@/lib/stationData";
 import { formatNumber } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Home, Briefcase, Store } from "lucide-react";
 
 interface StationAreaControlProps {
   transportMode: TransportMode;
@@ -30,17 +31,17 @@ export const StationAreaControl = ({
 
   return (
     <div className="border-y bg-muted/20">
-      <div className="container mx-auto px-8 py-8">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div className="container mx-auto px-4 md:px-8 py-4 md:py-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
           {/* Left: Question + Transport Mode Selector */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight">
               {t('stationArea.question')}
             </h2>
             <div className="flex items-center gap-3">
-              <span className="text-lg text-muted-foreground">15 {t('stationArea.minutes')}</span>
+              <span className="text-base md:text-lg text-muted-foreground">15 {t('stationArea.minutes')}</span>
               <Select value={transportMode} onValueChange={(value) => onTransportModeChange(value as TransportMode)}>
-                <SelectTrigger className="w-32 font-semibold border-2">
+                <SelectTrigger className="w-28 md:w-32 font-semibold border-0 border-b-2 border-foreground rounded-none bg-transparent px-2 focus:ring-0">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -51,15 +52,11 @@ export const StationAreaControl = ({
             </div>
           </div>
 
-          {/* Right: Stats */}
-          <div className="flex items-center gap-8 text-right">
+          {/* Right: Stats - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 text-right">
             <div>
-              <div className="text-3xl font-bold tabular-nums">{totalStations}</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wide">{t('stats.stations')}</div>
-            </div>
-            <div className="h-12 w-px bg-border" />
-            <div>
-              <div className="text-2xl font-bold text-[hsl(var(--housing))] tabular-nums">
+              <div className="flex items-center justify-end gap-2 text-xl lg:text-2xl font-bold text-[hsl(var(--housing))] tabular-nums">
+                <Home className="h-4 w-4" />
                 {formatNumber(totalWoon)} m²
               </div>
               <div className="text-xs text-muted-foreground tabular-nums">
@@ -67,7 +64,8 @@ export const StationAreaControl = ({
               </div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-[hsl(var(--work))] tabular-nums">
+              <div className="flex items-center justify-end gap-2 text-xl lg:text-2xl font-bold text-[hsl(var(--work))] tabular-nums">
+                <Briefcase className="h-4 w-4" />
                 {formatNumber(totalWerk)} m²
               </div>
               <div className="text-xs text-muted-foreground tabular-nums">
@@ -75,7 +73,8 @@ export const StationAreaControl = ({
               </div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-[hsl(var(--facilities))] tabular-nums">
+              <div className="flex items-center justify-end gap-2 text-xl lg:text-2xl font-bold text-[hsl(var(--facilities))] tabular-nums">
+                <Store className="h-4 w-4" />
                 {formatNumber(totalVoorzieningen)} m²
               </div>
               <div className="text-xs text-muted-foreground tabular-nums">

@@ -9,12 +9,12 @@ export const translations = {
       stationAreaBVO: 'Station Area Gross Floor Area (BVO)'
     },
     themes: {
-      network: 'Netwerk',
-      reach: 'Bereik',
-      program: 'Programma',
-      economy: 'Economie',
-      equity: 'Inclusie',
-      resilience: 'Robuust',
+      network: 'Network',
+      reach: 'Access',
+      program: 'Program',
+      economy: 'Economy',
+      equity: 'Equity',
+      resilience: 'Resilience',
       comingSoon: 'Coming soon'
     },
     stationArea: {

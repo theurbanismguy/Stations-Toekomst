@@ -20,7 +20,6 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 5%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
-    --accent: 210 100% 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
@@ -29,10 +28,11 @@ All colors MUST be HSL.
     --ring: 210 100% 50%;
     --radius: 0;
 
-    /* Custom theme colors */
-    --housing: 210 100% 56%;
-    --work: 142 76% 36%;
-    --facilities: 24 95% 53%;
+    /* Custom theme colors - Original Color Scheme */
+    --housing: 228 78% 46%;
+    --work: 45 71% 65%;
+    --facilities: 341 54% 63%;
+    --accent: 11 99% 50%;
 
     --chart-1: 210 100% 56%;
     --chart-2: 142 76% 36%;
@@ -54,7 +54,6 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-    --accent: 210 100% 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
