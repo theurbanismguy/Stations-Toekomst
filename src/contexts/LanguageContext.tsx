@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { translations } from '@/lib/translations';
 
 export type Language = 'en' | 'nl';
 
@@ -27,7 +28,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
   const t = (key: string) => {
     const keys = key.split('.');
-    const translations = require('@/lib/translations').translations;
     let value: any = translations[language];
     
     for (const k of keys) {
