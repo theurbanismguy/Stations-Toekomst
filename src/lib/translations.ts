@@ -1,23 +1,27 @@
 export const translations = {
   en: {
     site: {
-      title: "Stations.Toekomst",
-      subtitle: "Observatory of Dutch Railway System",
+      title: 'STATIONS.TOEKOMST',
+      subtitle: 'Observatory of the Dutch Railway System'
+    },
+    station: {
+      backToDashboard: 'Back to Dashboard',
+      stationAreaBVO: 'Station Area Gross Floor Area (BVO)'
     },
     themes: {
-      network: "Network",
-      access: "Access",
-      program: "Program",
-      economy: "Economy",
-      equity: "Equity",
-      resilience: "Resilience",
-      comingSoon: "Coming soon",
+      network: 'Netwerk',
+      reach: 'Bereik',
+      program: 'Programma',
+      economy: 'Economie',
+      equity: 'Inclusie',
+      resilience: 'Robuust',
+      comingSoon: 'Coming soon'
     },
     stationArea: {
       question: "What's a station area?",
-      duration: "15 mins by",
-      walk: "Walk",
-      bike: "Bike",
+      minutes: "mins",
+      walking: "Walking",
+      biking: "Biking",
     },
     views: {
       overview: "Overview",
@@ -38,15 +42,20 @@ export const translations = {
       top10: "Top 10 Highest GFA",
       bottom10: "Bottom 10 Lowest GFA",
       totalGfa: "Total GFA",
-      searchStation: "Search station...",
+      total: "Total",
+      housing: "Housing",
+      work: "Work",
+      facilities: "Facilities",
+      searchStation: "Search stations...",
       stationsFound: "stations found",
       stationFound: "station found",
+      stationNotFound: "Station not found",
       allStations: "All",
       selectStations: "Select stations to compare",
       selectedStations: "Selected stations",
       clearSelection: "Clear",
-      workGfa: "Work GFA",
-      housingGfa: "Housing GFA",
+      workGfa: "Werken BVO",
+      housingGfa: "Wonen BVO",
       millionSqm: "million m²",
     },
     table: {
@@ -61,23 +70,27 @@ export const translations = {
   },
   nl: {
     site: {
-      title: "Stations.Toekomst",
-      subtitle: "Observatorium van het Nederlandse Spoorwegsysteem",
+      title: 'STATIONS.TOEKOMST',
+      subtitle: 'Observatorium van het Nederlandse Spoorwegsysteem'
+    },
+    station: {
+      backToDashboard: 'Terug naar Dashboard',
+      stationAreaBVO: 'Stationsgebied Bruto Vloeroppervlak (BVO)'
     },
     themes: {
-      network: "Netwerk",
-      access: "Bereik",
-      program: "Programma",
-      economy: "Economie",
-      equity: "Inclusie",
-      resilience: "Robuust",
-      comingSoon: "Binnenkort beschikbaar",
+      network: 'Netwerk',
+      reach: 'Bereik',
+      program: 'Programma',
+      economy: 'Economie',
+      equity: 'Inclusie',
+      resilience: 'Robuust',
+      comingSoon: 'Binnenkort beschikbaar'
     },
     stationArea: {
       question: "Wat is een stationsgebied?",
-      duration: "15 min per",
-      walk: "Lopen",
-      bike: "Fiets",
+      minutes: "min",
+      walking: "Lopen",
+      biking: "Fietsen",
     },
     views: {
       overview: "Overzicht",
@@ -98,9 +111,14 @@ export const translations = {
       top10: "Top 10 Hoogste BVO",
       bottom10: "Bottom 10 Laagste BVO",
       totalGfa: "Totaal BVO",
-      searchStation: "Zoek station...",
+      total: "Totaal",
+      housing: "Wonen",
+      work: "Werken",
+      facilities: "Voorzieningen",
+      searchStation: "Zoek stations...",
       stationsFound: "stations gevonden",
       stationFound: "station gevonden",
+      stationNotFound: "Station niet gevonden",
       allStations: "Alle",
       selectStations: "Selecteer stations om te vergelijken",
       selectedStations: "Geselecteerde stations",

@@ -8,101 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 220 30% 12%;
-
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 12%;
-
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 12%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 210 100% 50%;
+    --radius: 0;
 
-    --primary: 11 99% 50%;
-    --primary-foreground: 0 0% 100%;
+    /* Custom theme colors */
+    --housing: 210 100% 56%;
+    --work: 142 76% 36%;
+    --facilities: 24 95% 53%;
 
-    --secondary: 233 66% 41%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 220 15% 90%;
-    --muted-foreground: 220 15% 45%;
-
-    --accent: 11 99% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 11 99% 50%;
-
-    --radius: 0.75rem;
-
-    --housing: 45 72% 65%;
-    --housing-light: 45 72% 85%;
-    --housing-dark: 45 72% 45%;
-    
-    --work: 233 66% 41%;
-    --work-light: 233 66% 85%;
-    --work-dark: 233 66% 31%;
-    
-    --facilities: 343 57% 62%;
-    --facilities-light: 343 57% 85%;
-    --facilities-dark: 343 57% 42%;
-
-    --chart-1: 45 72% 65%;
-    --chart-2: 233 66% 41%;
-    --chart-3: 343 57% 62%;
+    --chart-1: 210 100% 56%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 24 95% 53%;
     --chart-4: 280 80% 60%;
     --chart-5: 340 75% 55%;
   }
 
   .dark {
-    --background: 220 30% 8%;
-    --foreground: 220 15% 95%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 210 100% 50%;
 
-    --card: 220 25% 12%;
-    --card-foreground: 220 15% 95%;
-
-    --popover: 220 25% 12%;
-    --popover-foreground: 220 15% 95%;
-
-    --primary: 11 99% 55%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 233 66% 51%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 220 20% 20%;
-    --muted-foreground: 220 15% 65%;
-
-    --accent: 11 99% 55%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 75% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 11 99% 55%;
-
-    --housing: 45 72% 70%;
-    --housing-light: 45 72% 25%;
-    --housing-dark: 45 72% 55%;
-    
-    --work: 233 66% 51%;
-    --work-light: 233 66% 25%;
-    --work-dark: 233 66% 41%;
-    
-    --facilities: 343 57% 67%;
-    --facilities-light: 343 57% 25%;
-    --facilities-dark: 343 57% 52%;
-
-    --chart-1: 45 72% 70%;
-    --chart-2: 233 66% 51%;
-    --chart-3: 343 57% 67%;
-    --chart-4: 280 80% 65%;
-    --chart-5: 340 75% 60%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -114,12 +78,31 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
-    font-feature-settings: "tnum", "lnum"; /* Enable tabular and lining numbers */
+    font-feature-settings: 'tnum' on, 'lnum' on;
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
   }
 
-  /* Swiss-inspired typography */
+  /* Big Type Swiss Typography */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+    line-height: 1.1;
+  }
+
+  h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    font-size: clamp(24px, 3vw, 32px);
     letter-spacing: -0.02em;
   }
 
@@ -129,9 +112,12 @@ All colors MUST be HSL.
     font-feature-settings: "tnum";
   }
 
-  /* Reduce unnecessary shadows */
+  /* No shadows - pure Swiss minimalism */
+  * {
+    box-shadow: none !important;
+  }
+
   .card {
-    box-shadow: none;
     border: 1px solid hsl(var(--border));
   }
 

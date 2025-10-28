@@ -126,6 +126,12 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
               data={scatterData}
               fill="hsl(var(--accent))"
               fillOpacity={0.7}
+              cursor="pointer"
+              onClick={(data: any) => {
+                if (data && data.name) {
+                  window.location.href = `/station/${encodeURIComponent(data.name)}`;
+                }
+              }}
             />
           </ScatterChart>
         </ResponsiveContainer>

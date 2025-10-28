@@ -90,11 +90,12 @@ export const getStationStats = (data: StationData[]) => {
 export const calculateDonutScale = (
   total: number,
   maxTotal: number,
-  minScale: number = 60,
-  maxScale: number = 140
+  minScale: number = 50,
+  maxScale: number = 180
 ): number => {
   if (maxTotal === 0) return minScale;
-  const ratio = total / maxTotal;
+  // Square root scaling for better visual differentiation
+  const ratio = Math.sqrt(total / maxTotal);
   return minScale + ratio * (maxScale - minScale);
 };
 
