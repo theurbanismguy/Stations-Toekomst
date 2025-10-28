@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { StationData, getTopBottomStations } from "@/lib/stationData";
 import { MiniDonut } from "./MiniDonut";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
@@ -9,6 +10,7 @@ interface TopBottomChartProps {
 }
 
 export const TopBottomChart = ({ data }: TopBottomChartProps) => {
+  const { t } = useLanguage();
   const { top, bottom } = useMemo(() => getTopBottomStations(data, 10), [data]);
 
   return (
@@ -18,7 +20,7 @@ export const TopBottomChart = ({ data }: TopBottomChartProps) => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-accent" />
-            Top 10 Hoogste BVO Bereikbaarheid
+            {t('chart.top10')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -40,7 +42,7 @@ export const TopBottomChart = ({ data }: TopBottomChartProps) => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingDown className="h-5 w-5 text-muted-foreground" />
-            Bottom 10 Laagste BVO Bereikbaarheid
+            {t('chart.bottom10')}
           </CardTitle>
         </CardHeader>
         <CardContent>

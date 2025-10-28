@@ -1,36 +1,51 @@
 import { useMemo, useState } from "react";
-import { parseStationData, getStationStats } from "@/lib/stationData";
+import { parseStationData, getStationStats, TransportMode } from "@/lib/stationData";
 import { CompactStatsBar } from "@/components/CompactStatsBar";
 import { StationTable } from "@/components/StationTable";
 import { StationGrid } from "@/components/StationGrid";
 import { TopBottomChart } from "@/components/TopBottomChart";
 import { ComparisonChart } from "@/components/ComparisonChart";
 import { ViewToggle, ViewType } from "@/components/ViewToggle";
+import { ThemeNavigation } from "@/components/ThemeNavigation";
+import { TransportModeSelector } from "@/components/TransportModeSelector";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Train } from "lucide-react";
 
 const Index = () => {
-  const stationData = useMemo(() => parseStationData(), []);
-  const stats = useMemo(() => getStationStats(stationData), [stationData]);
+  const { t } = useLanguage();
+  const [transportMode, setTransportMode] = useState<TransportMode>("walk");
   const [currentView, setCurrentView] = useState<ViewType>("overview");
+  
+  const stationData = useMemo(() => parseStationData(transportMode), [transportMode]);
+  const stats = useMemo(() => getStationStats(stationData), [stationData]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="border-b bg-card/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-accent/10">
-              <Train className="h-8 w-8 text-accent" />
+      <div className="border-b bg-card/30">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-2 rounded bg-accent/10">
+                <Train className="h-10 w-10 text-accent" />
+              </div>
+              <div>
+                <h1 className="text-5xl font-bold tracking-tight">
+                  {t('site.title')}
+                </h1>
+                <p className="text-lg text-muted-foreground mt-1">
+                  {t('site.subtitle')}
+                </p>
+              </div>
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
-              Stations.Toekomst
-            </h1>
+            <LanguageToggle />
           </div>
-          <p className="text-muted-foreground text-lg">
-            Inzicht in het Nederlandse spoorwegsysteem
-          </p>
         </div>
       </div>
+
+      {/* Theme Navigation */}
+      <ThemeNavigation />
 
       {/* Compact Stats Bar */}
       <CompactStatsBar
@@ -42,6 +57,9 @@ const Index = () => {
         avgWerk={stats.avgWerk}
         avgVoorzieningen={stats.avgVoorzieningen}
       />
+
+      {/* Transport Mode Selector */}
+      <TransportModeSelector value={transportMode} onChange={setTransportMode} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">

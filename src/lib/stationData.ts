@@ -1,4 +1,7 @@
-import csvData from "@/assets/Station_BVO_Walk_15_mins.csv?raw";
+import walkCsvData from "@/assets/Station_BVO_Walk_15_mins.csv?raw";
+import bikeCsvData from "@/assets/Station_BVO_Bike_15_mins.csv?raw";
+
+export type TransportMode = 'walk' | 'bike';
 
 export interface StationData {
   name: string;
@@ -10,7 +13,7 @@ export interface StationData {
   total: number;
 }
 
-export const parseStationData = (): StationData[] => {
+const parseCSV = (csvData: string, woonCol: number, werkCol: number, voorzCol: number): StationData[] => {
   const lines = csvData.trim().split("\n");
   const data: StationData[] = [];
 
@@ -20,9 +23,9 @@ export const parseStationData = (): StationData[] => {
     if (!line) continue;
 
     const cols = line.split(",");
-    const woon = parseInt(cols[3]) || 0;
-    const werk = parseInt(cols[4]) || 0;
-    const voorzieningen = parseInt(cols[5]) || 0;
+    const woon = parseInt(cols[woonCol]) || 0;
+    const werk = parseInt(cols[werkCol]) || 0;
+    const voorzieningen = parseInt(cols[voorzCol]) || 0;
 
     data.push({
       name: cols[0].replace(/^﻿/, ""), // Remove BOM if present
@@ -36,6 +39,16 @@ export const parseStationData = (): StationData[] => {
   }
 
   return data;
+};
+
+export const parseStationData = (mode: TransportMode = 'walk'): StationData[] => {
+  if (mode === 'bike') {
+    // Bike CSV columns: Station, Size, Type, BikeF_15min_Woon, BikeF_15min_Werk, BikeF_15min_Voorzieningen
+    return parseCSV(bikeCsvData, 3, 4, 5);
+  } else {
+    // Walk CSV columns: Station, Size, Type, Walk_15min_Woon, Walk_15min_Werk, Walk_15min_Voorzieningen
+    return parseCSV(walkCsvData, 3, 4, 5);
+  }
 };
 
 export const getStationStats = (data: StationData[]) => {

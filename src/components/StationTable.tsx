@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { StationData } from "@/lib/stationData";
 import {
   Table,
@@ -20,6 +21,7 @@ interface StationTableProps {
 type SortField = "name" | "total" | "woon" | "werk" | "voorzieningen";
 
 export const StationTable = ({ data }: StationTableProps) => {
+  const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [sortField, setSortField] = useState<SortField>("total");
   const [sortAsc, setSortAsc] = useState(false);
@@ -70,7 +72,7 @@ export const StationTable = ({ data }: StationTableProps) => {
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
         <Input
-          placeholder="Zoek station..."
+          placeholder={t('chart.searchStation')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="pl-10 focus-visible:ring-primary"
@@ -88,11 +90,11 @@ export const StationTable = ({ data }: StationTableProps) => {
                   onClick={() => handleSort("name")}
                   className="font-semibold"
                 >
-                  Station
+                  {t('table.station')}
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
-              <TableHead>Type</TableHead>
+              <TableHead>{t('table.type')}</TableHead>
               <TableHead className="text-right bg-[hsl(var(--housing-light))]">
                 <Button
                   variant="ghost"
@@ -100,7 +102,7 @@ export const StationTable = ({ data }: StationTableProps) => {
                   onClick={() => handleSort("woon")}
                   className="font-semibold hover:bg-[hsl(var(--housing))] hover:text-white"
                 >
-                  Wonen
+                  {t('table.housing')}
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
@@ -111,7 +113,7 @@ export const StationTable = ({ data }: StationTableProps) => {
                   onClick={() => handleSort("werk")}
                   className="font-semibold hover:bg-[hsl(var(--work))] hover:text-white"
                 >
-                  Werken
+                  {t('table.work')}
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
@@ -122,7 +124,7 @@ export const StationTable = ({ data }: StationTableProps) => {
                   onClick={() => handleSort("voorzieningen")}
                   className="font-semibold hover:bg-[hsl(var(--facilities))] hover:text-white"
                 >
-                  Voorzieningen
+                  {t('table.facilities')}
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
@@ -133,7 +135,7 @@ export const StationTable = ({ data }: StationTableProps) => {
                   onClick={() => handleSort("total")}
                   className="font-semibold"
                 >
-                  Totaal
+                  {t('table.total')}
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>

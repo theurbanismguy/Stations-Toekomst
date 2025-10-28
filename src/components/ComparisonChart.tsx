@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StationData } from "@/lib/stationData";
 import { StationSelector } from "./StationSelector";
@@ -19,6 +20,8 @@ interface ComparisonChartProps {
 }
 
 export const ComparisonChart = ({ data }: ComparisonChartProps) => {
+  const { t } = useLanguage();
+  
   // Default: top 10 stations
   const defaultStations = useMemo(() => {
     return [...data]
@@ -42,10 +45,14 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
     }));
   }, [data, selectedStations]);
 
+  const formatAxisInMillions = (value: number) => {
+    return `${(value / 1_000_000).toFixed(1)}M`;
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Werken vs. Wonen Vergelijking</CardTitle>
+        <CardTitle>{t('chart.workGfa')} vs. {t('chart.housingGfa')}</CardTitle>
         <div className="mt-4">
           <StationSelector
             data={data}
@@ -63,11 +70,12 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
             <XAxis 
               type="number" 
               dataKey="x" 
-              name="Werken"
+              name={t('chart.workGfa')}
               tick={{ fill: "hsl(var(--foreground))" }}
+              tickFormatter={formatAxisInMillions}
             >
               <Label 
-                value="Werken BVO (m²)" 
+                value={`${t('chart.workGfa')} (${t('chart.millionSqm')})`}
                 position="bottom" 
                 offset={10}
                 style={{ fill: "hsl(var(--work))", fontWeight: 600 }}
@@ -76,18 +84,19 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
             <YAxis 
               type="number" 
               dataKey="y" 
-              name="Wonen"
+              name={t('chart.housingGfa')}
               tick={{ fill: "hsl(var(--foreground))" }}
+              tickFormatter={formatAxisInMillions}
             >
               <Label 
-                value="Wonen BVO (m²)" 
+                value={`${t('chart.housingGfa')} (${t('chart.millionSqm')})`}
                 angle={-90} 
                 position="insideLeft"
                 offset={10}
                 style={{ fill: "hsl(var(--housing))", fontWeight: 600 }}
               />
             </YAxis>
-            <ZAxis type="number" dataKey="z" range={[100, 1000]} name="Totaal" />
+            <ZAxis type="number" dataKey="z" range={[100, 1000]} name={t('chart.totalGfa')} />
             <Tooltip
               cursor={{ strokeDasharray: "3 3" }}
               content={({ active, payload }) => {
@@ -98,13 +107,13 @@ export const ComparisonChart = ({ data }: ComparisonChartProps) => {
                       <p className="font-semibold text-sm mb-2 text-accent">{data.name}</p>
                       <div className="text-xs space-y-1">
                         <p className="text-[hsl(var(--work))]">
-                          Werken: {data.x.toLocaleString("nl-NL")} m²
+                          {t('chart.workGfa')}: {data.x.toLocaleString("nl-NL")} m²
                         </p>
                         <p className="text-[hsl(var(--housing))]">
-                          Wonen: {data.y.toLocaleString("nl-NL")} m²
+                          {t('chart.housingGfa')}: {data.y.toLocaleString("nl-NL")} m²
                         </p>
                         <p className="text-muted-foreground">
-                          Totaal: {data.z.toLocaleString("nl-NL")} m²
+                          {t('chart.totalGfa')}: {data.z.toLocaleString("nl-NL")} m²
                         </p>
                       </div>
                     </div>

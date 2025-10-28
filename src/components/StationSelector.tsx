@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { StationData } from "@/lib/stationData";
 import { Check, ChevronsUpDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,7 @@ export const StationSelector = ({
   selectedStations,
   onSelectionChange,
 }: StationSelectorProps) => {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   const toggleStation = (stationName: string) => {
@@ -59,15 +61,15 @@ export const StationSelector = ({
               className="flex-1 justify-between"
             >
               {selectedStations.length === 0
-                ? "Selecteer stations..."
-                : `${selectedStations.length} station${selectedStations.length > 1 ? "s" : ""} geselecteerd`}
+                ? t('chart.selectStations')
+                : `${selectedStations.length} ${t('stats.stations')}`}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[400px] p-0" align="start">
             <Command>
-              <CommandInput placeholder="Zoek station..." />
-              <CommandEmpty>Geen stations gevonden.</CommandEmpty>
+              <CommandInput placeholder={t('chart.searchStation')} />
+              <CommandEmpty>No stations found</CommandEmpty>
               <ScrollArea className="h-[300px]">
                 <CommandGroup>
                   {data.map((station) => (
@@ -96,10 +98,10 @@ export const StationSelector = ({
           </PopoverContent>
         </Popover>
         <Button variant="outline" size="sm" onClick={clearAll}>
-          Wissen
+          {t('chart.clearSelection')}
         </Button>
         <Button variant="outline" size="sm" onClick={selectAll}>
-          Alles
+          {t('chart.allStations')}
         </Button>
       </div>
 

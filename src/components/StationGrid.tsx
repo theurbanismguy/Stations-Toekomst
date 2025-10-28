@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { StationData, calculateDonutScale } from "@/lib/stationData";
 import { MiniDonut } from "./MiniDonut";
 import { Input } from "./ui/input";
@@ -10,6 +11,7 @@ interface StationGridProps {
 }
 
 export const StationGrid = ({ data }: StationGridProps) => {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
 
   const maxTotal = useMemo(() => {
@@ -26,11 +28,11 @@ export const StationGrid = ({ data }: StationGridProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Alle {data.length} Stations</CardTitle>
+        <CardTitle>{t('chart.allStations')} {data.length} {t('stats.stations')}</CardTitle>
         <div className="relative mt-4">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Zoek station..."
+            placeholder={t('chart.searchStation')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -39,7 +41,7 @@ export const StationGrid = ({ data }: StationGridProps) => {
       </CardHeader>
       <CardContent>
         <div className="text-sm text-muted-foreground mb-4">
-          {filteredStations.length} {filteredStations.length === 1 ? "station" : "stations"} gevonden
+          {filteredStations.length} {filteredStations.length === 1 ? t('chart.stationFound') : t('chart.stationsFound')}
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
           {filteredStations.map((station) => {

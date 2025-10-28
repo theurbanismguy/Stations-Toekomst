@@ -113,5 +113,30 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
+    font-feature-settings: "tnum", "lnum"; /* Enable tabular and lining numbers */
+  }
+
+  /* Swiss-inspired typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Tabular numbers for data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Reduce unnecessary shadows */
+  .card {
+    box-shadow: none;
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Clean input styling */
+  input, button, select {
+    font-feature-settings: "tnum", "lnum";
   }
 }

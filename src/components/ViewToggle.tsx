@@ -1,3 +1,4 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { PieChart, BarChart3, GitCompare, Table } from "lucide-react";
 
@@ -9,6 +10,8 @@ interface ViewToggleProps {
 }
 
 export const ViewToggle = ({ value, onValueChange }: ViewToggleProps) => {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex justify-center">
       <ToggleGroup
@@ -17,39 +20,39 @@ export const ViewToggle = ({ value, onValueChange }: ViewToggleProps) => {
         onValueChange={(newValue) => {
           if (newValue) onValueChange(newValue as ViewType);
         }}
-        className="bg-muted p-1 rounded-lg"
+        className="bg-muted/50 p-1 rounded"
       >
         <ToggleGroupItem
           value="overview"
           aria-label="Overview"
-          className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
         >
           <PieChart className="h-4 w-4 mr-2" />
-          Overzicht
+          {t('views.overview')}
         </ToggleGroupItem>
         <ToggleGroupItem
           value="top10"
           aria-label="Top & Bottom 10"
-          className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
         >
           <BarChart3 className="h-4 w-4 mr-2" />
-          Top & Bottom 10
+          {t('views.topBottom')}
         </ToggleGroupItem>
         <ToggleGroupItem
           value="compare"
           aria-label="Compare"
-          className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
         >
           <GitCompare className="h-4 w-4 mr-2" />
-          Vergelijken
+          {t('views.compare')}
         </ToggleGroupItem>
         <ToggleGroupItem
           value="table"
           aria-label="All Data"
-          className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          className="data-[state=on]:bg-foreground data-[state=on]:text-background"
         >
           <Table className="h-4 w-4 mr-2" />
-          Alle Data
+          {t('views.allData')}
         </ToggleGroupItem>
       </ToggleGroup>
     </div>
