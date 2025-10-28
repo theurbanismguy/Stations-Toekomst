@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 30% 12%;
 
-    --primary: 27 100% 50%;
-    --primary-foreground: 220 30% 12%;
+    --primary: 11 99% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 100% 50%;
+    --secondary: 233 66% 41%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 15% 90%;
     --muted-foreground: 220 15% 45%;
 
-    --accent: 190 100% 45%;
+    --accent: 11 99% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 75% 55%;
@@ -34,13 +34,25 @@ All colors MUST be HSL.
 
     --border: 220 20% 88%;
     --input: 220 20% 88%;
-    --ring: 27 100% 50%;
+    --ring: 11 99% 50%;
 
     --radius: 0.75rem;
 
-    --chart-1: 27 100% 50%;
-    --chart-2: 210 100% 50%;
-    --chart-3: 190 100% 45%;
+    --housing: 45 72% 65%;
+    --housing-light: 45 72% 85%;
+    --housing-dark: 45 72% 45%;
+    
+    --work: 233 66% 41%;
+    --work-light: 233 66% 85%;
+    --work-dark: 233 66% 31%;
+    
+    --facilities: 343 57% 62%;
+    --facilities-light: 343 57% 85%;
+    --facilities-dark: 343 57% 42%;
+
+    --chart-1: 45 72% 65%;
+    --chart-2: 233 66% 41%;
+    --chart-3: 343 57% 62%;
     --chart-4: 280 80% 60%;
     --chart-5: 340 75% 55%;
   }
@@ -55,16 +67,16 @@ All colors MUST be HSL.
     --popover: 220 25% 12%;
     --popover-foreground: 220 15% 95%;
 
-    --primary: 27 100% 55%;
-    --primary-foreground: 220 30% 12%;
+    --primary: 11 99% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 100% 55%;
+    --secondary: 233 66% 51%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 20% 20%;
     --muted-foreground: 220 15% 65%;
 
-    --accent: 190 100% 50%;
+    --accent: 11 99% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 75% 50%;
@@ -72,11 +84,23 @@ All colors MUST be HSL.
 
     --border: 220 20% 20%;
     --input: 220 20% 20%;
-    --ring: 27 100% 55%;
+    --ring: 11 99% 55%;
 
-    --chart-1: 27 100% 55%;
-    --chart-2: 210 100% 55%;
-    --chart-3: 190 100% 50%;
+    --housing: 45 72% 70%;
+    --housing-light: 45 72% 25%;
+    --housing-dark: 45 72% 55%;
+    
+    --work: 233 66% 51%;
+    --work-light: 233 66% 25%;
+    --work-dark: 233 66% 41%;
+    
+    --facilities: 343 57% 67%;
+    --facilities-light: 343 57% 25%;
+    --facilities-dark: 343 57% 52%;
+
+    --chart-1: 45 72% 70%;
+    --chart-2: 233 66% 51%;
+    --chart-3: 343 57% 67%;
     --chart-4: 280 80% 65%;
     --chart-5: 340 75% 60%;
   }

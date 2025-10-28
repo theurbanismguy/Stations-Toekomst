@@ -68,12 +68,12 @@ export const StationTable = ({ data }: StationTableProps) => {
   return (
     <div className="space-y-4">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
         <Input
           placeholder="Zoek station..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10"
+          className="pl-10 focus-visible:ring-primary"
         />
       </div>
 
@@ -93,34 +93,34 @@ export const StationTable = ({ data }: StationTableProps) => {
                 </Button>
               </TableHead>
               <TableHead>Type</TableHead>
-              <TableHead className="text-right">
+              <TableHead className="text-right bg-[hsl(var(--housing-light))]">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleSort("woon")}
-                  className="font-semibold"
+                  className="font-semibold hover:bg-[hsl(var(--housing))] hover:text-white"
                 >
                   Wonen
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
-              <TableHead className="text-right">
+              <TableHead className="text-right bg-[hsl(var(--work-light))]">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleSort("werk")}
-                  className="font-semibold"
+                  className="font-semibold hover:bg-[hsl(var(--work))] hover:text-white"
                 >
                   Werken
                   <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
-              <TableHead className="text-right">
+              <TableHead className="text-right bg-[hsl(var(--facilities-light))]">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleSort("voorzieningen")}
-                  className="font-semibold"
+                  className="font-semibold hover:bg-[hsl(var(--facilities))] hover:text-white"
                 >
                   Voorzieningen
                   <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -148,13 +148,13 @@ export const StationTable = ({ data }: StationTableProps) => {
                     {station.size}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right tabular-nums">
+                <TableCell className="text-right tabular-nums bg-[hsl(var(--housing-light))]/30">
                   {station.woon.toLocaleString("nl-NL")}
                 </TableCell>
-                <TableCell className="text-right tabular-nums">
+                <TableCell className="text-right tabular-nums bg-[hsl(var(--work-light))]/30">
                   {station.werk.toLocaleString("nl-NL")}
                 </TableCell>
-                <TableCell className="text-right tabular-nums">
+                <TableCell className="text-right tabular-nums bg-[hsl(var(--facilities-light))]/30">
                   {station.voorzieningen.toLocaleString("nl-NL")}
                 </TableCell>
                 <TableCell className="text-right font-semibold tabular-nums">

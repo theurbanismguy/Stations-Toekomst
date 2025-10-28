@@ -1,14 +1,17 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { parseStationData, getStationStats } from "@/lib/stationData";
 import { StatsCard } from "@/components/StatsCard";
 import { StationTable } from "@/components/StationTable";
-import { BVOCharts } from "@/components/BVOCharts";
+import { AllStationsDonut } from "@/components/AllStationsDonut";
+import { Top10Chart } from "@/components/Top10Chart";
+import { ComparisonChart } from "@/components/ComparisonChart";
+import { ViewToggle, ViewType } from "@/components/ViewToggle";
 import { Train, Home, Briefcase, Building2, TrendingUp } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
   const stationData = useMemo(() => parseStationData(), []);
   const stats = useMemo(() => getStationStats(stationData), [stationData]);
+  const [currentView, setCurrentView] = useState<ViewType>("overview");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -64,21 +67,18 @@ const Index = () => {
           />
         </div>
 
-        {/* Tabs for Charts and Table */}
-        <Tabs defaultValue="charts" className="space-y-6">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-            <TabsTrigger value="charts">Visualisaties</TabsTrigger>
-            <TabsTrigger value="table">Data Tabel</TabsTrigger>
-          </TabsList>
+        {/* View Toggle */}
+        <div className="mb-8">
+          <ViewToggle value={currentView} onValueChange={setCurrentView} />
+        </div>
 
-          <TabsContent value="charts" className="space-y-6">
-            <BVOCharts data={stationData} />
-          </TabsContent>
-
-          <TabsContent value="table">
-            <StationTable data={stationData} />
-          </TabsContent>
-        </Tabs>
+        {/* Content Area */}
+        <div className="animate-in fade-in duration-300">
+          {currentView === "overview" && <AllStationsDonut data={stationData} />}
+          {currentView === "top10" && <Top10Chart data={stationData} />}
+          {currentView === "compare" && <ComparisonChart data={stationData} />}
+          {currentView === "table" && <StationTable data={stationData} />}
+        </div>
       </div>
     </div>
   );
