@@ -29,11 +29,11 @@ export const ViewToggle = ({ value, onValueChange }: ViewToggleProps) => {
         </ToggleGroupItem>
         <ToggleGroupItem
           value="top10"
-          aria-label="Top 10"
+          aria-label="Top & Bottom 10"
           className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
         >
           <BarChart3 className="h-4 w-4 mr-2" />
-          Top 10
+          Top & Bottom 10
         </ToggleGroupItem>
         <ToggleGroupItem
           value="compare"

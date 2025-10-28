@@ -55,6 +55,11 @@ export const getStationStats = (data: StationData[]) => {
 
   const topStation = [...data].sort((a, b) => b.total - a.total)[0];
 
+  const totalWoon = data.reduce((sum, s) => sum + s.woon, 0);
+  const totalWerk = data.reduce((sum, s) => sum + s.werk, 0);
+  const totalVoorzieningen = data.reduce((sum, s) => sum + s.voorzieningen, 0);
+  const grandTotal = totalWoon + totalWerk + totalVoorzieningen;
+
   return {
     totalStations,
     avgTotal,
@@ -62,5 +67,31 @@ export const getStationStats = (data: StationData[]) => {
     avgWerk,
     avgVoorzieningen,
     topStation,
+    totalWoon,
+    totalWerk,
+    totalVoorzieningen,
+    grandTotal,
+  };
+};
+
+export const calculateDonutScale = (
+  total: number,
+  maxTotal: number,
+  minScale: number = 60,
+  maxScale: number = 140
+): number => {
+  if (maxTotal === 0) return minScale;
+  const ratio = total / maxTotal;
+  return minScale + ratio * (maxScale - minScale);
+};
+
+export const getTopBottomStations = (
+  data: StationData[],
+  count: number = 10
+) => {
+  const sorted = [...data].sort((a, b) => b.total - a.total);
+  return {
+    top: sorted.slice(0, count),
+    bottom: sorted.slice(-count).reverse(),
   };
 };
