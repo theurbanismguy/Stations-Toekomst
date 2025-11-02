@@ -6,6 +6,17 @@
     <title>Stations.Toekomst - Observatory of Dutch Railway System</title>
     <meta name="description" content="Interactive dashboard for GFA accessibility within 15 minutes from each NS station in the Netherlands. Insights into housing, work, and facilities around stations." />
     <meta name="author" content="Lovable" />
+    
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
 
     <meta property="og:title" content="Stations.Toekomst - Observatory of Dutch Railway System" />
     <meta property="og:description" content="Interactive dashboard for GFA accessibility within 15 minutes from each NS station in the Netherlands. Insights into housing, work, and facilities around stations." />
