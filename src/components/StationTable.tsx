@@ -13,16 +13,18 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, ArrowUpDown } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Search, ArrowUpDown, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface StationTableProps {
   data: StationData[];
+  onBack: () => void;
 }
 
 type SortField = "name" | "total" | "woon" | "werk" | "voorzieningen";
 
-export const StationTable = ({ data }: StationTableProps) => {
+export const StationTable = ({ data, onBack }: StationTableProps) => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   const [search, setSearch] = useState("");
@@ -71,16 +73,26 @@ export const StationTable = ({ data }: StationTableProps) => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
-        <Input
-          placeholder={t('chart.searchStation')}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 focus-visible:ring-primary"
-        />
-      </div>
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between mb-4">
+          <CardTitle>{t('views.allData')}</CardTitle>
+          <Button variant="ghost" size="sm" onClick={onBack}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            {t('common.back')}
+          </Button>
+        </div>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
+          <Input
+            placeholder={t('chart.searchStation')}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="pl-10 focus-visible:ring-primary"
+          />
+        </div>
+      </CardHeader>
+      <CardContent>
 
       {isMobile ? (
         <div className="space-y-3">
@@ -182,6 +194,7 @@ export const StationTable = ({ data }: StationTableProps) => {
           </Table>
         </div>
       )}
-    </div>
+      </CardContent>
+    </Card>
   );
 };

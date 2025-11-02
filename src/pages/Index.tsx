@@ -3,18 +3,17 @@ import { parseStationData, getStationStats, TransportMode } from "@/lib/stationD
 import { StationAreaControl } from "@/components/StationAreaControl";
 import { StationTable } from "@/components/StationTable";
 import { StationGrid } from "@/components/StationGrid";
-import { TopBottomChart } from "@/components/TopBottomChart";
-import { ComparisonChart } from "@/components/ComparisonChart";
-import { ViewToggle, ViewType } from "@/components/ViewToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 const Index = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   const [transportMode, setTransportMode] = useState<TransportMode>("walk");
-  const [currentView, setCurrentView] = useState<ViewType>("overview");
+  const [showTable, setShowTable] = useState(false);
   
   const stationData = useMemo(() => parseStationData(transportMode), [transportMode]);
   const stats = useMemo(() => getStationStats(stationData), [stationData]);
@@ -40,7 +39,10 @@ const Index = () => {
                 {t('site.title')}
               </h1>
             </Link>
-            <LanguageToggle />
+            {/* Show language toggle only on desktop */}
+            <div className="hidden md:block">
+              <LanguageToggle />
+            </div>
           </div>
           
           {/* Subtitle */}
@@ -48,9 +50,16 @@ const Index = () => {
             {t('site.subtitle')}
           </div>
           
-          {/* Theme Navigation */}
+          {/* Theme Navigation + Language Toggle (mobile) */}
           <TooltipProvider>
             <div className="flex flex-wrap items-center gap-2 text-sm md:text-base">
+              {/* Show compact language toggle on mobile */}
+              {isMobile && (
+                <div className="mr-1">
+                  <LanguageToggle />
+                </div>
+              )}
+              
               {themes.map((theme, index) => (
                 <span key={theme.id} className="flex items-center gap-2">
                   {theme.active ? (
@@ -94,17 +103,13 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-3 md:px-4 lg:px-8 py-6 md:py-8">
-        {/* View Toggle */}
-        <div className="mb-6 md:mb-8">
-          <ViewToggle value={currentView} onValueChange={setCurrentView} />
-        </div>
-
         {/* Content Area */}
         <div className="animate-in fade-in duration-300">
-          {currentView === "overview" && <StationGrid data={stationData} />}
-          {currentView === "top10" && <TopBottomChart data={stationData} />}
-          {currentView === "compare" && <ComparisonChart data={stationData} />}
-          {currentView === "table" && <StationTable data={stationData} />}
+          {showTable ? (
+            <StationTable data={stationData} onBack={() => setShowTable(false)} />
+          ) : (
+            <StationGrid data={stationData} onShowTable={() => setShowTable(true)} />
+          )}
         </div>
       </div>
     </div>

@@ -38,6 +38,14 @@ export const translations = {
       facilities: "Facilities",
       gfa: "GFA",
     },
+    sort: {
+      default: "Sort",
+      ascending: "Low to High",
+      descending: "High to Low",
+    },
+    common: {
+      back: "Back",
+    },
     chart: {
       top10: "Top 10 Highest GFA",
       bottom10: "Bottom 10 Lowest GFA",
@@ -106,6 +114,14 @@ export const translations = {
       work: "Werken",
       facilities: "Voorzieningen",
       gfa: "BVO",
+    },
+    sort: {
+      default: "Sorteer",
+      ascending: "Laag naar Hoog",
+      descending: "Hoog naar Laag",
+    },
+    common: {
+      back: "Terug",
     },
     chart: {
       top10: "Top 10 Hoogste BVO",
